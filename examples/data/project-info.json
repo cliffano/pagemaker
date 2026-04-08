@@ -1,0 +1,16 @@
+{
+	"org": {
+		"id": "cliffano",
+		"name": "Studio",
+		"description": "Maker of digital utilities"
+	},
+	"repositories": {
+		"Utilities": [
+			{
+				"id": "pagemakerexample",
+				"name": "Pagemaker Example",
+				"description": "Example Pagemaker repo"
+			}
+		]
+	}
+}

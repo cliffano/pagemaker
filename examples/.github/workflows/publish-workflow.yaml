@@ -1,0 +1,19 @@
+---
+name: Publish
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.ORG_GITHUB_TOKEN }}
+          set-safe-directory: ${{ github.workspace }}
+      - uses: cliffano/command-docker-action@v1.4.0
+        with:
+          command: 'make deps build'
+          image: cliffano/studio:2.16.0
+      - uses: cliffano/save-changes-action@main
+        with:
+          message: "Generate website on $(date +'%d/%m/%Y %H:%M:%S')"
+          github_token: ${{ secrets.ORG_GITHUB_TOKEN }}

@@ -1,0 +1,11 @@
+---
+generator:
+  component: project-site
+  inputs:
+    project_id: pagemakerexample
+    project_name: PageMakerExample
+    project_desc: A sample ProjectSite website built by PageMaker
+    author_name: Cliffano Subagio
+    author_email: cliffano@gmail.com
+    github_id: cliffano
+    github_repo: pagemakerexample

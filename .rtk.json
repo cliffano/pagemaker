@@ -1,0 +1,15 @@
+{
+  "resources": [
+    {
+      "path": "src/Makefile-pagemaker",
+      "type": "makefile",
+      "params": {
+        "variable": "PAGEMAKER_VERSION"
+      }
+    },
+    {
+      "path": "CHANGELOG.md",
+      "type": "keep-a-changelog"
+    }
+  ]
+}
