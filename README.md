@@ -29,8 +29,7 @@ Have a look at [PagemakerExample](examples/) as an example project which uses Pa
 | github_id | cliffano |
 | github_repo | pagemaker |
 
-Usage
------
+## Usage
 
 The following targets are available:
 
@@ -43,8 +42,7 @@ The following targets are available:
 | release-minor | Create a minor release using [rtk](https://github.com/cliffano/rtk) |
 | release-patch | Create a patch release using [rtk](https://github.com/cliffano/rtk) |
 
-Colophon
---------
+## Colophon
 
 Related Projects:
 
