@@ -4,7 +4,7 @@
 ################################################################
 
 # PageMaker's version number
-PAGEMAKER_VERSION = 0.9.0-pre.0
+PAGEMAKER_VERSION = 0.10.0
 
 $(info ################################################################)
 $(info Building ProjectSite website using Makefile:)
