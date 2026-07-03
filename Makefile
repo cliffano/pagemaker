@@ -27,7 +27,7 @@ lint:
 
 test:
 	cd examples && \
-	  make -f ../src/Makefile-pagemaker deps-extra-apt ci update-dotfiles update-to-latest update-to-main && \
+	  make -f ../src/Makefile-pagemaker deps ci update-dotfiles update-to-latest update-to-main && \
 	  make -f ../src/Makefile-pagemaker update-to-version TARGET_PAGEMAKER_VERSION=0.10.0
 
 release-major:
