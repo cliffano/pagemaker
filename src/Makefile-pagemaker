@@ -6,8 +6,49 @@
 # PageMaker's version number
 PAGEMAKER_VERSION = 0.10.1-pre.0
 
+################################################################
+# User configuration variables
+# https://github.com/cliffano/pagemaker#configuration
+# These variables should be stored in pagemaker.yml config file,
+# and they will be parsed using yq https://github.com/mikefarah/yq
+
+# PACKAGE_NAME is the name of the node.js package
+PACKAGE_NAME=$(shell yq .package_name pagemaker.yml)
+
+# AUTHOR is the author of the node.js package
+AUTHOR ?= $(shell yq .author pagemaker.yml)
+
+define set_generator_vars
+$(1): GENERATOR_COMPONENT = $$(shell yq .generator.component pagemaker.yml)
+$(1): GENERATOR_INPUTS_PROJECT_ID = $$(shell yq .generator.inputs.project_id pagemaker.yml)
+$(1): GENERATOR_INPUTS_PROJECT_NAME = $$(shell yq .generator.inputs.project_name pagemaker.yml)
+$(1): GENERATOR_INPUTS_PROJECT_DESC = $$(shell yq .generator.inputs.project_desc pagemaker.yml)
+$(1): GENERATOR_INPUTS_AUTHOR_NAME = $$(shell yq .generator.inputs.author_name pagemaker.yml)
+$(1): GENERATOR_INPUTS_AUTHOR_EMAIL = $$(shell yq .generator.inputs.author_email pagemaker.yml)
+$(1): GENERATOR_INPUTS_AUTHOR_URL = $$(shell yq .generator.inputs.author_url pagemaker.yml)
+$(1): GENERATOR_INPUTS_GITHUB_ID = $$(shell yq .generator.inputs.github_id pagemaker.yml)
+$(1): GENERATOR_INPUTS_GITHUB_REPO = $$(shell yq .generator.inputs.github_repo pagemaker.yml)
+$(1): GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $$(shell yq .generator.inputs.github_token_prefix pagemaker.yml)
+endef
+
 $(info ################################################################)
 $(info Building ProjectSite website using Makefile:)
+
+define run_hook
+	@if [ -f Makefile-extras ] && grep -q "^$(1):" Makefile-extras; then \
+		$(MAKE) -f Makefile-extras $(1); \
+	fi
+endef
+
+define deps_extra
+	@if command -v apt-get > /dev/null 2>&1; then \
+		if [ "$$(id -u)" = "0" ]; then \
+			$(MAKE) deps-extra-apt; \
+		else \
+			sudo $(MAKE) deps-extra-apt; \
+		fi; \
+	fi
+endef
 
 define python_venv
 	. .venv/bin/activate && $(1)
@@ -33,6 +74,7 @@ rmdeps:
 
 deps:
 	npm install .
+	$(call deps_extra)
 
 deps-extra-apt:
 	apt-get install -y markdownlint
@@ -61,15 +103,8 @@ update-to-main:
 update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/pagemaker/$(TARGET_PAGEMAKER_VERSION)/src/Makefile-pagemaker -o Makefile
 
+$(eval $(call set_generator_vars,update-dotfiles))
 # Update dotfiles using the generator-python
-update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id pagemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo pagemaker.yml)
 update-dotfiles: stage
 	cd stage/ && \
 	  rm -rf generator-website/ && \

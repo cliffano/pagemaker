@@ -1,9 +1,22 @@
+define deps_extra
+	@if command -v apt-get > /dev/null 2>&1; then \
+		if [ "$$(id -u)" = "0" ]; then \
+			$(MAKE) deps-extra-apt; \
+		else \
+			sudo $(MAKE) deps-extra-apt; \
+		fi; \
+	fi
+endef
+
 all: ci
 ci: clean lint test
 
 clean:
 	cd examples && \
 	  make -f ../src/Makefile-pagemaker clean
+
+deps:
+	$(call deps_extra)
 
 deps-extra-apt:
 	apt-get install -y markdownlint
@@ -28,4 +41,4 @@ release-patch:
 
 release: release-minor
 
-.PHONY: all ci clean lint release release-major release-minor release-patch test
+.PHONY: all ci clean deps deps-extra-apt lint release release-major release-minor release-patch test
