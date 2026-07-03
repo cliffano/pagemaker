@@ -23,7 +23,7 @@ deps-extra-apt:
 
 lint:
 	checkmake src/Makefile-pagemaker
-	mdl -s .mdl-style.rb $(shell find . -path ./stage -prune -o -path ./examples/node_modules -prune -o -name "*.md" -print) 
+	mdl -s .mdl-style.rb $(shell find . -path ./stage -prune -o -name CHANGELOG.md -o -path ./examples/node_modules -prune -o -name "*.md" -print) 
 
 test:
 	cd examples && \

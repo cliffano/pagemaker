@@ -32,7 +32,9 @@ $(1): GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $$(shell yq .generator.inputs.githu
 endef
 
 $(info ################################################################)
-$(info Building ProjectSite website using Makefile:)
+$(info Building ProjectSite website using Makefile...)
+$(info - Package name = ${PACKAGE_NAME})
+$(info - Author = ${AUTHOR})
 
 define run_hook
 	@if [ -f Makefile-extras ] && grep -q "^$(1):" Makefile-extras; then \
@@ -59,7 +61,7 @@ endef
 
 # CI target to be executed by CI/CD tool
 all: ci
-ci: clean deps lint build
+ci: clean lint build
 
 # Ensure stage directory exists
 stage:
@@ -82,8 +84,7 @@ deps-extra-apt:
 lint:
 	node_modules/.bin/jsonlint -d data/
 	node_modules/.bin/yamllint .github/workflows/*.yaml
-	mdl -r ~MD002,~MD013 docs/
-	mdl -r ~MD002,~MD013,~MD033 *.md
+	mdl -r ~MD002,~MD013,~MD033 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
 
 build:
 	node_modules/.bin/jazz-cli merge data/project-info.json templates/index.md.jazz | head -c -1 > docs/index.md
@@ -104,7 +105,7 @@ update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/pagemaker/$(TARGET_PAGEMAKER_VERSION)/src/Makefile-pagemaker -o Makefile
 
 $(eval $(call set_generator_vars,update-dotfiles))
-# Update dotfiles using the generator-python
+# Update dotfiles using the generator-website
 update-dotfiles: stage
 	cd stage/ && \
 	  rm -rf generator-website/ && \
@@ -124,4 +125,4 @@ update-dotfiles: stage
 	  cp .gitignore ../../../../.gitignore && \
 	  cp .yamllint ../../../../.yamllint
 
-.PHONY: all ci clean deps deps-extra-apt lint build test update-to-latest update-to-main update-to-version update-dotfiles
+.PHONY: $(1) all ci clean deps deps-extra-apt lint build test update-to-latest update-to-main update-to-version update-dotfiles
