@@ -125,4 +125,30 @@ update-dotfiles: stage
 	  cp .gitignore ../../../../.gitignore && \
 	  cp .yamllint ../../../../.yamllint
 
-.PHONY: $(1) all ci clean deps deps-extra-apt lint build test update-to-latest update-to-main update-to-version update-dotfiles
+# Update partial snippets using the generator-website
+$(eval $(call set_generator_vars,update-partials))
+update-partials: stage
+	cd stage/ && \
+	  rm -rf generator-website/ && \
+	  git clone https://github.com/cliffano/generator-website && \
+	  cd generator-website && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT)-partials -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	for block in AVATAR BADGES DEVELOPERS_GUIDE; do \
+	  partial_file=$$(printf "%s" "$$block" | tr "A-Z" "a-z"); \
+	  ex -s \
+	    -c "/<!-- BEGIN:$$block -->/+1,/<!-- END:$$block -->/-1d" \
+	    -c "/<!-- BEGIN:$$block -->/r stage/generator-ansible/stage/$(GENERATOR_COMPONENT)-partials/$$partial_file.txt" \
+	    -c 'wq' \
+	    README.md; \
+	done
+
+.PHONY: $(1) all ci clean deps deps-extra-apt lint build test update-to-latest update-to-main update-to-version update-dotfiles update-partials
