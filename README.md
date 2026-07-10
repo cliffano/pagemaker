@@ -1,7 +1,11 @@
+<!-- BEGIN:AVATAR -->
 ![Avatar](avatar.jpg)
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/cliffano/pagemaker/workflows/CI/badge.svg)](https://github.com/cliffano/pagemaker/actions?query=workflow%3ACI)
 [![Security Status](https://snyk.io/test/github/cliffano/pagemaker/badge.svg)](https://snyk.io/test/github/cliffano/pagemaker)
+<!-- END:BADGES -->
 
 # Pagemaker
 
@@ -12,8 +16,8 @@ Have a look at [PagemakerExample](examples/) as an example project which uses Pa
 
 ## Installation
 
-1. Download `src/Makefile-pagemaker` as the `Makefile` of your project:
-    `curl https://raw.githubusercontent.com/cliffano/pagemaker/main/src/Makefile-pagemaker -o Makefile`
+1. Download `src/Makefile-pagemaker` as the `Makefile` of your project: `curl https://raw.githubusercontent.com/cliffano/pagemaker/main/src/Makefile-pagemaker -o Makefile`
+```
 2. Create configuration file `pagemaker.yml` with properties described in [Configuration](#configuration) section
 3. Run the available `Makefile` targets described in [Usage](#usage) section
 
