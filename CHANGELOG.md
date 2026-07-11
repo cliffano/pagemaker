@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add run hook, deps extra, and set generator vars
 - Add Markdown lint check
 - Add README partials, update-partials target
+- Add test for generated Markdown file
 
 ### Changed
 - Move example to project-site subfolder

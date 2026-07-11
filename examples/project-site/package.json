@@ -6,6 +6,7 @@
   "devDependencies": {
     "jazz-cli": "^1.2.0",
     "jsonlint-dir": "^1.7.0",
+    "markdown-link-check": "^3.14.2",
     "yamllint-js": "^0.2.4"
   }
 }

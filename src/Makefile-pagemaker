@@ -141,6 +141,9 @@ build:
 	node_modules/.bin/jazz-cli merge data/project-info.json templates/index.md.jazz | head -c -1 > docs/index.md
 
 test:
+	node_modules/.bin/markdown-link-check docs/index.md
+
+test-examples:
 	echo "PLACEHOLDER"
 
 # Update Makefile to the latest version tag
