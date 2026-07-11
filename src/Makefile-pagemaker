@@ -23,6 +23,10 @@ $(info Building ProjectSite website using Makefile...)
 $(info - Package name = ${PACKAGE_NAME})
 $(info - Author = ${AUTHOR})
 
+define python_venv
+	. .venv/bin/activate && $(1)
+endef
+
 ################################################################
 # MAKE IT SO - Utility functions
 
@@ -101,10 +105,6 @@ define update_partials_from_generator
 	    -c 'wq' \
 	    README.md; \
 	done
-endef
-
-define python_venv
-	. .venv/bin/activate && $(1)
 endef
 
 ################################################################
