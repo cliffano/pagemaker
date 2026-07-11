@@ -1,10 +1,10 @@
 {
-  "name": "{{project_id}}",
+  "name": "pagemakerexample",
   "version": "0.9.0-pre.0",
   "type": "module",
   "private": true,
   "devDependencies": {
-    "jazz-cli": "^1.1.0",
+    "jazz-cli": "^1.2.0",
     "jsonlint-dir": "^1.7.0",
     "yamllint-js": "^0.2.4"
   }

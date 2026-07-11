@@ -7,5 +7,7 @@ generator:
     project_desc: A sample ProjectSite website built by PageMaker
     author_name: Cliffano Subagio
     author_email: cliffano@gmail.com
+    author_url: https://cliffano.com
     github_id: cliffano
     github_repo: pagemakerexample
+    github_token_prefix: STUDIO
