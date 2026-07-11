@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Markdown lint check
 - Add README partials, update-partials target
 - Add test for generated Markdown file
+- Add deps-upgrade impl using pkjutil
 
 ### Changed
 - Move example to project-site subfolder

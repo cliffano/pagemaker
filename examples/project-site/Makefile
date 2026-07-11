@@ -132,6 +132,9 @@ deps:
 deps-extra-apt:
 	apt-get install -y markdownlint
 
+deps-upgrade:
+	node_modules/.bin/pkjutil upgrade-dependencies
+	
 lint:
 	node_modules/.bin/jsonlint -d data/
 	node_modules/.bin/yamllint .github/workflows/*.yaml
@@ -168,4 +171,4 @@ $(eval $(call set_generator_vars,update-partials,pagemaker))
 update-partials: stage
 	$(call update_partials_from_generator,website,AVATAR BADGES DEVELOPERS_GUIDE)
 
-.PHONY: $(1) all ci clean deps deps-extra-apt lint build test update-to-latest update-to-main update-to-version update-dotfiles update-partials
+.PHONY: $(1) all ci clean deps deps-extra-apt deps-upgrade rmdeps lint build test update-to-latest update-to-main update-to-version update-dotfiles update-partials
