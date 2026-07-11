@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Markdown lint check
 - Add README partials, update-partials target
 
+### Changed
+- Move example to project-site subfolder
+- Standardise repo Makefile structure
+
 ## 0.10.0 - 2026-04-11
 ### Added
 - Initial version
