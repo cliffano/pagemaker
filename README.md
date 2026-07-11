@@ -17,7 +17,6 @@ Have a look at [PagemakerExample](examples/) as an example project which uses Pa
 ## Installation
 
 1. Download `src/Makefile-pagemaker` as the `Makefile` of your project: `curl https://raw.githubusercontent.com/cliffano/pagemaker/main/src/Makefile-pagemaker -o Makefile`
-```
 2. Create configuration file `pagemaker.yml` with properties described in [Configuration](#configuration) section
 3. Run the available `Makefile` targets described in [Usage](#usage) section
 
