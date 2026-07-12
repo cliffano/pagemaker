@@ -1,13 +1,15 @@
 ---
+package_name: pagemakerexample
+author: Pakkun
 generator:
   component: project-site
   inputs:
     project_id: pagemakerexample
     project_name: PageMakerExample
     project_desc: A sample ProjectSite website built by PageMaker
-    author_name: Cliffano Subagio
+    author_name: Pakkun
     author_email: cliffano@gmail.com
-    author_url: https://cliffano.com
-    github_id: cliffano
+    author_url: https://github.com/pakkunbot
+    github_id: pakkunbot
     github_repo: pagemakerexample
     github_token_prefix: STUDIO
