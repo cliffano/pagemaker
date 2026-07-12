@@ -9,8 +9,8 @@
 
 # Pagemaker
 
-Pagemaker is a Makefile for building ProjectSite website .
-It provides utility targets for linting and releasing ProjectSite website projects.
+Pagemaker is a Makefile for building GH Pages Project website .
+It provides utility targets for linting building, testing, and releasing ProjectSite website projects.
 
 Have a look at [PagemakerExample](examples/) as an example project which uses Pagemaker.
 
