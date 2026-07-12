@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add templates/index.md.jazz to dotfiles list
+
 ## 1.0.0 - 2026-07-11
 ### Added
 - Add run hook, deps extra, and set generator vars

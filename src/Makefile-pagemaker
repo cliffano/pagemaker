@@ -164,7 +164,7 @@ update-to-version:
 $(eval $(call set_generator_vars,update-dotfiles,pagemaker))
 # Update dotfiles using the generator-website
 update-dotfiles: stage
-	$(call update_dotfiles_from_generator,website,.github/. .gitignore .yamllint)
+	$(call update_dotfiles_from_generator,website,.github/. .gitignore .yamllint templates/index.md.jazz)
 
 # Update partial snippets using the generator-website
 $(eval $(call set_generator_vars,update-partials,pagemaker))
