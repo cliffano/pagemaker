@@ -46,6 +46,12 @@ stage:
 clean:
 	rm -rf stage/
 
+build:
+	node_modules/.bin/jazz-cli merge data/project-info.json templates/index.md.jazz | head -c -1 > docs/index.md
+
+################################################################
+# Dependencies targets
+
 rmdeps:
 	rm -rf node_modules/
 
@@ -59,13 +65,13 @@ deps-extra-apt:
 deps-upgrade:
 	node_modules/.bin/pkjutil upgrade-dependencies
 
+################################################################
+# Testing targets
+
 lint:
 	node_modules/.bin/jsonlint -d data/
 	node_modules/.bin/yamllint .github/workflows/*.yaml
 	mdl -r ~MD002,~MD013,~MD033 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
-
-build:
-	node_modules/.bin/jazz-cli merge data/project-info.json templates/index.md.jazz | head -c -1 > docs/index.md
 
 test:
 	node_modules/.bin/markdown-link-check docs/index.md
