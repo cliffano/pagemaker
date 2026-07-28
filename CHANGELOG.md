@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add templates/index.md.jazz to dotfiles list
+- Add AGENTS.md
 
 ### Changed
 - Restructure Makefile to use MAKEITSO standard
