@@ -4,7 +4,7 @@
 ################################################################
 
 # PageMaker info
-PAGEMAKER_VERSION = 1.2.1-pre.0
+PAGEMAKER_VERSION = 1.2.0
 
 UPDATE_MAKEFILE = pagemaker
 UPDATE_GENERATOR = website
