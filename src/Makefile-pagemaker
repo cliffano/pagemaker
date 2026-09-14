@@ -4,7 +4,7 @@
 ################################################################
 
 # PageMaker info
-PAGEMAKER_VERSION = 1.4.1-pre.0
+PAGEMAKER_VERSION = 1.5.0
 
 UPDATE_GH_ID = cliffano
 UPDATE_MAKEFILE = pagemaker
